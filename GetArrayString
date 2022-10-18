@@ -1,0 +1,88 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
+/*
+ * main.cc
+ * Copyright (C) 2022 kbin <kbin@kbin-Acer>
+ * 
+ * GetArrayStrings is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * GetArrayStrings is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+class GetArrStr{
+
+	 int x;
+	 int y;
+	 string getfilename;
+	 string strfile;
+	 string* arr;
+
+	 public:
+
+     GetArrStr(){
+		 x = 0;
+		 arr = new string[100000];
+	 }
+
+     void GetFaileName(){
+
+		 cout << "Pleas, insert file name or path to file and file name;";
+		 cin >> getfilename;
+
+	 }
+
+     void OutString(){
+
+		  cout << "Pleas, insert number of position for string in array:";
+		  cin >> y;
+		  cout << y << endl;
+
+	 }
+
+		 
+	 void GetArr(){
+
+		 //x = 0;
+		 //arr = new string[100000];
+		 ifstream mf(getfilename);
+		 while(getline(mf, strfile)){
+				  
+			      arr[x] = strfile;
+			      x++;
+			 }
+
+		 if(y < 1){
+			 cout << "Impossibel value for number of array elements." << endl;
+		 }
+		 else{
+		 cout << arr[(y-1)] << endl;
+		 delete[] arr;
+		 }
+	 }
+
+ };
+
+int main()
+{
+	GetArrStr gas;
+	gas.GetFaileName ();
+	gas.OutString ();
+	gas.GetArr ();
+	return 0;
+}
+
+

@@ -1,0 +1,151 @@
+/*
+ * main.cc
+ * Copyright (C) 2022 kbin <kbin@kbin-Acer>
+ * 
+ * FreaderOneFile is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * FreaderOneFile is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <array>
+
+using namespace std;
+
+class GetArrStr{
+
+	 int x;
+	 string getfilename;
+	 string strfile;
+	 //string* arr;
+	 array<string, 100000>arr;
+
+	 public:
+
+     string GetFileName(){
+
+		 cout << "Pleas, insert file name or path to file and file name;";
+		 cin >> getfilename;
+		 return getfilename;
+
+	 }
+	 
+	 string GetArr(int a){
+
+		 x = 0;
+		 //arr = new string[100000];
+		 ifstream mf(GetFileName ());
+		 while(getline(mf, strfile)){
+				  
+			      arr[x] = strfile;
+			      x++;
+			 }
+		 return arr[a];
+
+	 }
+
+	 void DellArr(){
+		 //delete[] arr;
+	 }
+		 
+ };
+
+class GetProposal{
+
+	GetArrStr ga;
+	string str;
+	char space = ' ';
+	char point = '.';
+	char comma = ',';
+	//char w [50];
+	//char* w;
+	string* prop;
+	string word;
+
+	public:
+
+	
+
+	void GetProp(){
+
+		prop = new string[100];
+		int pp1 = 0;
+		//for ( int i=0; i<=ga
+		str = ga.GetArr (8);
+		cout << str << endl;
+		//w = new char[50];
+		array<char,30>w;
+		w.fill(0);
+		int wp = 0;
+		int pp = 0;
+		for( int i=0; i<=str.length(); i++){
+			char x = str[i];
+			int mi = i-1;
+			int ip = i+1;
+			char ix = str[mi];
+			//cout << ix << x;
+			char xi = str[ip];
+			//cout << xi << endl;
+
+			if (x != space){
+
+                w [wp] =  x;
+				//cout << x << endl;
+				//word = w;
+				wp++;
+			}
+			if (ix != space && x == space && xi != space){
+				word = w.data();
+				//cout << w <<endl;
+			    //cout << word << endl;
+                prop[pp] = word;
+				word.clear();
+				w.fill(0);
+				wp = 0;
+				pp++; 
+		     }
+			 if (x != space && i == str.length()){
+				word = w.data();
+				//cout << word << endl;
+				prop[pp] = word;
+				word.clear();
+				w.fill(0);
+				wp = 0;
+				pp++;
+				
+			 }
+
+			  if (x == point || x == 0){
+                  
+				  ;
+			  }
+
+		}
+
+		cout << prop[2] << endl;
+
+	}
+		
+};
+
+int main()
+{
+	GetArrStr gas;
+	GetProposal gpr;
+	//gas.GetFileName ();
+	//gas.GFNString ();
+	gpr.GetProp ();
+	//gas.DellArr ();
+	return 0;
+}
